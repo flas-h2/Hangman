@@ -18,10 +18,13 @@ def gametime(word, strikes, none_guesses, blank, guesses):
                     return [strikes, none_guesses, blank, guesses]
 
                 else:
-                    none_guesses.append(userin)
-                    print("Not in word.")
-                    strikes += 1
-                    return [strikes, none_guesses, blank, guesses]
+                    if len(userin) < 2 and userin not in guesses:
+                        none_guesses.append(userin)
+                        print("Not in word.")
+                        strikes += 1
+                        return [strikes, none_guesses, blank, guesses]
+                    else:
+                        print("Invalid.")
 
         elif strikes == 1:
             print(" _______\n |/    |\n |    (_)\n |\n |\n |\n |\n_|___")
@@ -37,10 +40,13 @@ def gametime(word, strikes, none_guesses, blank, guesses):
                     return [strikes, none_guesses, blank, guesses]
 
                 else:
-                    none_guesses.append(userin)
-                    print("Not in word.")
-                    strikes += 1
-                    return [strikes, none_guesses, blank, guesses]
+                    if len(userin) < 2 and userin not in guesses:
+                        none_guesses.append(userin)
+                        print("Not in word.")
+                        strikes += 1
+                        return [strikes, none_guesses, blank, guesses]
+                    else:
+                        print("Invalid.")
 
         elif strikes == 2:
             print(" _______\n |/    |\n |    (_)\n |     |\n |     |\n |\n |\n_|___")
@@ -56,10 +62,13 @@ def gametime(word, strikes, none_guesses, blank, guesses):
                     return [strikes, none_guesses, blank, guesses]
 
                 else:
-                    none_guesses.append(userin)
-                    print("Not in word.")
-                    strikes += 1
-                    return [strikes, none_guesses, blank, guesses]
+                    if len(userin) < 2 and userin not in guesses:
+                        none_guesses.append(userin)
+                        print("Not in word.")
+                        strikes += 1
+                        return [strikes, none_guesses, blank, guesses]
+                    else:
+                        print("Invalid.")
 
         elif strikes == 3:
             print(" _______\n |/    |\n |    (_)\n |    \\|\n |     |\n |\n |\n_|___")
@@ -75,10 +84,13 @@ def gametime(word, strikes, none_guesses, blank, guesses):
                     return [strikes, none_guesses, blank, guesses]
 
                 else:
-                    none_guesses.append(userin)
-                    print("Not in word.")
-                    strikes += 1
-                    return [strikes, none_guesses, blank, guesses]
+                    if len(userin) < 2 and userin not in guesses:
+                        none_guesses.append(userin)
+                        print("Not in word.")
+                        strikes += 1
+                        return [strikes, none_guesses, blank, guesses]
+                    else:
+                        print("Invalid.")
 
         elif strikes == 4:
             print(" _______\n |/    |\n |    (_)\n |    \\|/\n |     |\n |\n |\n_|___")
@@ -94,10 +106,13 @@ def gametime(word, strikes, none_guesses, blank, guesses):
                     return [strikes, none_guesses, blank, guesses]
 
                 else:
-                    none_guesses.append(userin)
-                    print("Not in word.")
-                    strikes += 1
-                    return [strikes, none_guesses, blank, guesses]
+                    if len(userin) < 2 and userin not in guesses:
+                        none_guesses.append(userin)
+                        print("Not in word.")
+                        strikes += 1
+                        return [strikes, none_guesses, blank, guesses]
+                    else:
+                        print("Invalid.")
 
         elif strikes == 5:
             print(
@@ -114,10 +129,13 @@ def gametime(word, strikes, none_guesses, blank, guesses):
                     return [strikes, none_guesses, blank, guesses]
 
                 else:
-                    none_guesses.append(userin)
-                    print("Not in word.")
-                    strikes += 1
-                    return [strikes, none_guesses, blank, guesses]
+                    if len(userin) < 2 and userin not in guesses:
+                        none_guesses.append(userin)
+                        print("Not in word.")
+                        strikes += 1
+                        return [strikes, none_guesses, blank, guesses]
+                    else:
+                        print("Invalid.")
 
         elif strikes == 6:
             print(
@@ -145,7 +163,7 @@ def main():
     strikes = 0
     none_guesses = []
     list_of_words = ("sprite", "head", "runtime", "authority",
-                     "Python", "Kraft", "duck", "junk", "klins", "edge", "teams", "rainbow", "chrome", "steam", "file")
+                     "Python", "Kraft", "duck", "junk", "klins", "teams", "rainbow", "chrome", "steam", "file")
 
     word = random.choice(list_of_words)
     blank_word = (list("_" * (len(word))))
