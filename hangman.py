@@ -1,188 +1,92 @@
 import random
 
 
+def display_hangman(strikes):
+    stages = [
+        " _______\n |/    |\n |\n |\n |\n |\n |\n_|___",
+        " _______\n |/    |\n |    (_)\n |\n |\n |\n |\n_|___",
+        " _______\n |    (_)\n |     |\n |     |\n |\n |\n_|___",
+        " _______\n |/    |\n |    (_)\n |    \\|\n |     |\n |\n |\n_|___",
+        " _______\n |/    |\n |    (_)\n |    \\|/\n |     |\n |\n |\n_|___",
+        " _______\n |/    |\n |    (_)\n |    \\|/\n |     |\n |    /\n |\n_|___",
+        " _______\n |/    |\n |    (_)\n |    \\|/\n |     |\n |    / \\\n |\n_|___"
+    ]
+    print(stages[strikes])
+
+
 def gametime(word, strikes, none_guesses, blank, guesses):
-    """Function that makes the game work"""
+    """Function that runs the hangman game"""
     while strikes <= 6:
-        if strikes == 0:
-            print(" _______\n |/    |\n |\n |\n |\n |\n |\n_|___")
+        display_hangman(strikes)
+        print(f"Word: {' '.join(blank)}")
+        print(f"Incorrect guesses: {none_guesses}")
 
-            while True:
-                print(blank)
-                userin = input("What would you like to guess? ")
-                guesses += 1
-                if userin in word and userin != blank and userin != none_guesses and len(userin) < 2:
-                    index_of_letter = (word.index(userin))
-                    blank[index_of_letter] = userin
-                    print(f"{userin} is in the word.")
-                    return [strikes, none_guesses, blank, guesses]
+        userin = input("Guess a letter: ").lower().strip()
+        guesses += 1
 
-                else:
-                    if len(userin) < 2 and userin not in guesses:
-                        none_guesses.append(userin)
-                        print("Not in word.")
-                        strikes += 1
-                        return [strikes, none_guesses, blank, guesses]
-                    else:
-                        print("Invalid.")
+        if len(userin) != 1 or not userin.isalpha():
+            print("Invalid input. Please enter a single letter.")
+            continue
 
-        elif strikes == 1:
-            print(" _______\n |/    |\n |    (_)\n |\n |\n |\n |\n_|___")
+        if userin in blank or userin in none_guesses:
+            print(f"You've already guessed '{userin}'!")
+            continue
 
-            while True:
-                print(blank)
-                userin = input("What would you like to guess? ")
-                guesses += 1
-                if userin in word and userin != blank and userin != none_guesses and len(userin) < 2:
-                    index_of_letter = (word.index(userin))
-                    blank[index_of_letter] = userin
-                    print(f"{userin} is in the word.")
-                    return [strikes, none_guesses, blank, guesses]
+        if userin in word:
+            for index, letter in enumerate(word):
+                if letter == userin:
+                    blank[index] = userin
+            print(f"Good job! {userin} is in the word.")
+        else:
+            none_guesses.append(userin)
+            strikes += 1
+            print(f"Sorry, {userin} is not in the word.")
 
-                else:
-                    if len(userin) < 2 and userin not in guesses:
-                        none_guesses.append(userin)
-                        print("Not in word.")
-                        strikes += 1
-                        return [strikes, none_guesses, blank, guesses]
-                    else:
-                        print("Invalid.")
+        if "".join(blank) == word:
+            print(f"Congratulations! You guessed the word: {
+                  word} in {guesses} guesses.")
+            return
 
-        elif strikes == 2:
-            print(" _______\n |/    |\n |    (_)\n |     |\n |     |\n |\n |\n_|___")
-
-            while True:
-                print(blank)
-                userin = input("What would you like to guess? ")
-                guesses += 1
-                if userin in word and userin != blank and userin != none_guesses and len(userin) < 2:
-                    index_of_letter = (word.index(userin))
-                    blank[index_of_letter] = userin
-                    print(f"{userin} is in the word.")
-                    return [strikes, none_guesses, blank, guesses]
-
-                else:
-                    if len(userin) < 2 and userin not in guesses:
-                        none_guesses.append(userin)
-                        print("Not in word.")
-                        strikes += 1
-                        return [strikes, none_guesses, blank, guesses]
-                    else:
-                        print("Invalid.")
-
-        elif strikes == 3:
-            print(" _______\n |/    |\n |    (_)\n |    \\|\n |     |\n |\n |\n_|___")
-
-            while True:
-                print(blank)
-                userin = input("What would you like to guess? ")
-                guesses += 1
-                if userin in word and userin != blank and userin != none_guesses and len(userin) < 2:
-                    index_of_letter = (word.index(userin))
-                    blank[index_of_letter] = userin
-                    print(f"{userin} is in the word.")
-                    return [strikes, none_guesses, blank, guesses]
-
-                else:
-                    if len(userin) < 2 and userin not in guesses:
-                        none_guesses.append(userin)
-                        print("Not in word.")
-                        strikes += 1
-                        return [strikes, none_guesses, blank, guesses]
-                    else:
-                        print("Invalid.")
-
-        elif strikes == 4:
-            print(" _______\n |/    |\n |    (_)\n |    \\|/\n |     |\n |\n |\n_|___")
-
-            while True:
-                print(blank)
-                userin = input("What would you like to guess? ")
-                guesses += 1
-                if userin in word and userin != blank and userin != none_guesses and len(userin) < 2:
-                    index_of_letter = (word.index(userin))
-                    blank[index_of_letter] = userin
-                    print(f"{userin} is in the word.")
-                    return [strikes, none_guesses, blank, guesses]
-
-                else:
-                    if len(userin) < 2 and userin not in guesses:
-                        none_guesses.append(userin)
-                        print("Not in word.")
-                        strikes += 1
-                        return [strikes, none_guesses, blank, guesses]
-                    else:
-                        print("Invalid.")
-
-        elif strikes == 5:
-            print(
-                " _______\n |/    |\n |    (_)\n |    \\|/\n |     |\n |    /\n |\n_|___")
-
-            while True:
-                print(blank)
-                userin = input("What would you like to guess? ")
-                guesses += 1
-                if userin in word and userin != blank and userin != none_guesses and len(userin) < 2:
-                    index_of_letter = (word.index(userin))
-                    blank[index_of_letter] = userin
-                    print(f"{userin} is in the word.")
-                    return [strikes, none_guesses, blank, guesses]
-
-                else:
-                    if len(userin) < 2 and userin not in guesses:
-                        none_guesses.append(userin)
-                        print("Not in word.")
-                        strikes += 1
-                        return [strikes, none_guesses, blank, guesses]
-                    else:
-                        print("Invalid.")
-
-        elif strikes == 6:
-            print(
-                " _______\n |/    |\n |    (_)\n |    \\|/\n |     |\n |    / \\ \n |\n_|___")
-
-            return [strikes, none_guesses, blank, guesses]
+        if strikes == 6:
+            display_hangman(strikes)
+            print(f"Game over! The word was: {word}")
+            return
 
 
 def replay():
-    """Allows the user to restart the game"""
+    """Ask the user if they want to play again"""
     while True:
         userin = input(
             "Would you like to play again? [Yes/No]: ").lower().strip()
-        if userin == "yes" or userin == "y":
-            main()
-        elif userin == "no" or userin == "n":
-            exit()
+        if userin in ["yes", "y"]:
+            return True
+        elif userin in ["no", "n"]:
+            return False
         else:
             print("Not a valid response. Try again!")
 
 
 def main():
-    """Main area where all functions are applied"""
-    guesses = 0
-    strikes = 0
-    none_guesses = []
-    list_of_words = ("sprite", "head", "runtime", "authority",
-                     "Python", "Kraft", "duck", "junk", "klins", "teams", "rainbow", "chrome", "steam", "file")
-
-    word = random.choice(list_of_words)
-    blank_word = (list("_" * (len(word))))
-    userin = input(
-        "Would you like to play a game of hangman? [Yes/No]: ").lower().strip()
-
+    """Main function to start the game"""
     while True:
-        if userin == "yes" or userin == "y":
-            strikes, none_guesses, blank_word, guesses = gametime(
-                word, strikes, none_guesses, blank_word, guesses)
-            print(f"Letters not in the word: {none_guesses}")
+        list_of_words = ["sprite", "head", "runtime", "authority", "python", "kraft",
+                         "duck", "junk", "klins", "teams", "rainbow", "chrome", "steam", "file"]
+        word = random.choice(list_of_words)
+        blank = ["_"] * len(word)
+        none_guesses = []
+        guesses = 0
+        strikes = 0
 
-            if "".join(blank_word) == word and strikes < 6:
-                print(f"""You Won! The word was {
-                      word}, it took you {guesses} guesse(s).""")
-                replay()
-            elif strikes == 6:
-                print(f"You lost! The word was {word}.")
-                replay()
+        userin = input(
+            "Would you like to play a game of hangman? [Yes/No]: ").lower().strip()
+        if userin in ["yes", "y"]:
+            gametime(word, strikes, none_guesses, blank, guesses)
+            if not replay():
+                break
+        elif userin in ["no", "n"]:
+            break
+        else:
+            print("Not a valid response. Try again!")
 
 
 if __name__ == '__main__':
