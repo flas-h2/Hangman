@@ -24,6 +24,7 @@ def gametime(word, strikes, none_guesses, blank, guesses):
         userin = input("Guess a letter: ").lower().strip()
         guesses += 1
 
+        # isalpha() checks if the letter is in the alphabet or not. ex: a = true, 1 = false
         if len(userin) != 1 or not userin.isalpha():
             print("Invalid input. Please enter a single letter.")
             continue
